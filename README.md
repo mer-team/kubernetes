@@ -9,9 +9,9 @@ k8s files used on project deployment
 `api-service.yaml` - Set up the `api` Service to run on `30080` port <br>
 `database-configmap.yaml` - Configmap with the `database` config <br>
 `database-deployment.yaml` - Deploy the `database` Image <br>
-`database-service.yaml` - Set up the `database` Service to run on `` port <br>
-`featextraction-deployment.yaml` - <br>
-`frontend-deployment.yaml` - <br>
+`database-service.yaml` - Set up the `database` Service <br>
+`featextraction-deployment.yaml` - Deploy the `Features Extraction` Image <br>
+`frontend-deployment.yaml` - Deploy the `Frontend` Image<br>
 `frontend-service.yaml` - Set up the `frontend` Service <br>
 `musicclass-deployment.yaml` - Deploy the `Music Classifier` Image <br>
 `rabbit-deployment.yaml` - Deploy the `RabbitMQ` Image <br>

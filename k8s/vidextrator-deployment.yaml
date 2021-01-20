@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vidextrator-deployment
+  labels:
+    app: vidextrator
+  namespace: mer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vidextrator
+  template:
+    metadata:
+      labels:
+        app: vidextrator
+    spec:
+      containers:
+      - name: vidextrator
+        image: merteam/vidextrator:latest
+        volumeMounts:
+          - mountPath: /vidExtrator/Audios
+            name: task-pv-storage
+
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim

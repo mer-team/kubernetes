@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: musicclass-deployment
+  labels:
+    app: musicclass
+  namespace: mer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: musicclass
+  template:
+    metadata:
+      labels:
+        app: musicclass
+    spec:
+      containers:
+      - name: musicclass
+        image: merteam/musicclass:latest

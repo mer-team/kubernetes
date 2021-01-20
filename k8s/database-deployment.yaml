@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+  namespace: mer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: mysql:5
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: teste
+        - name: MYSQL_DATABASE
+          value: mer
+        ports:
+          - containerPort: 3306
+        volumeMounts:
+        - name: db-configmap
+          mountPath: /docker-entrypoint-initdb.d/
+        #  subPath: mer.sql
+      volumes:
+      - name: db-configmap
+        configMap:
+          name: db-configmap

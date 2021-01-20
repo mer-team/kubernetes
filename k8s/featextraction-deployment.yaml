@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: featextraction
+  labels:
+    app: featextraction
+  namespace: mer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: featextraction
+  template:
+    metadata:
+      labels:
+        app: featextraction
+    spec:
+      containers:
+      - name: featextraction
+        image: merteam/featextraction:latest
+        volumeMounts:
+          - mountPath: /Audios
+            name: task-pv-storage
+
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
+  

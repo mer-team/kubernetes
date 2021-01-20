@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbit
+  labels:
+    run: rabbit
+  namespace: mer
+spec:
+  ports:
+  - name: management
+    port: 15672
+    protocol: TCP
+  - name: rabbit
+    port: 5672
+    protocol: TCP
+  selector:
+    app: rabbit

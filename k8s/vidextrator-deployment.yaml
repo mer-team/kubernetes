@@ -1,25 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vidextrator-deployment
+  name: vidextractor-deployment
   labels:
-    app: vidextrator
+    app: vidextractor
   namespace: mer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vidextrator
+      app: vidextractor
   template:
     metadata:
       labels:
-        app: vidextrator
+        app: vidextractor
     spec:
       containers:
-      - name: vidextrator
-        image: merteam/vidextrator:latest
+      - name: vidextractor
+        image: merteam/vidextractor:latest
+        env:
+        - name: HOST
+          value: "rabbit"
+        - name: USER
+          value: "merUser"
+        - name: PASS
+          value: "passwordMER"
+        - name: PORT
+          value: "5672"
+        - name: MNG_PORT
+          value: "15672"
+        - name: TIME
+          value: "10"
         volumeMounts:
-          - mountPath: /vidExtrator/Audios
+          - mountPath: /vidExtractor/Audios
             name: task-pv-storage
 
       volumes:

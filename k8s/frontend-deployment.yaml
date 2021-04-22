@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: merteam/frontend:minikube
+        image: merteam/frontend:latest
         env:
         - name: URL_API
           value: 192.168.49.2:30080

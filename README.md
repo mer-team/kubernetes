@@ -25,3 +25,10 @@ k8s files used on project deployment
 | Database | 3306 | --- |
 | Frontend | 3000 | 30090 |
 | RabbitMQ | 15672 <br> 5672 | --- |
+
+## Minikube 
+```bash
+minikube start
+kubectl apply -f k8s/
+minikube service list
+```

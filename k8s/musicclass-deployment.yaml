@@ -18,3 +18,16 @@ spec:
       containers:
       - name: musicclass
         image: merteam/musicclass:latest
+        env:
+        - name: HOST
+          value: "rabbit"
+        - name: USER
+          value: "merUser"
+        - name: PASS
+          value: "passwordMER"
+        - name: PORT
+          value: "5672"
+        - name: MNG_PORT
+          value: "15672"
+        - name: TIME
+          value: "10"

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wave2image-deployment
+  labels:
+    app: wave2image
+  namespace: mer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wave2image
+  template:
+    metadata:
+      labels:
+        app: wave2image
+    spec:
+      containers:
+      - name: wave2image
+        image: merteam/wave2image:latest
+        imagePullPolicy: Always #no cache
+        env:
+        - name: HOST
+          value: "rabbit"
+        - name: USER
+          value: "merUser"
+        - name: PASS
+          value: "passwordMER"
+        - name: PORT
+          value: "5672"
+        - name: MNG_PORT
+          value: "15672"
+        - name: TIME
+          value: "10"
+        volumeMounts:
+          - mountPath: /Audios
+            name: audios-pv-storage
+          - mountPath: /Soundwaves
+            name: wave2image-pv-storage
+
+      volumes:
+        - name: audios-pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-audios
+        - name: wave2image-pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-soundwaves

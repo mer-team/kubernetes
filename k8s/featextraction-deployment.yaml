@@ -18,12 +18,26 @@ spec:
       containers:
       - name: featextraction
         image: merteam/featextraction:latest
+        imagePullPolicy: Always #no cache
+        env:
+        - name: HOST
+          value: "rabbit"
+        - name: USER
+          value: "merUser"
+        - name: PASS
+          value: "passwordMER"
+        - name: PORT
+          value: "5672"
+        - name: MNG_PORT
+          value: "15672"
+        - name: TIME
+          value: "10"
         volumeMounts:
           - mountPath: /Audios
-            name: task-pv-storage
+            name: featextraction-pv-storage
 
       volumes:
-        - name: task-pv-storage
+        - name: featextraction-pv-storage
           persistentVolumeClaim:
-            claimName: task-pv-claim
+            claimName: pvc-audios
   

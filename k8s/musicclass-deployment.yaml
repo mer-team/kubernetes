@@ -19,6 +19,8 @@ spec:
       - name: musicclass
         image: merteam/musicclass:latest
         env:
+        - name: API_URL
+          value: "192.168.49.2:30080"
         - name: HOST
           value: "rabbit"
         - name: USER

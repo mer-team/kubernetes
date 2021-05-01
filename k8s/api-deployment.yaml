@@ -18,6 +18,23 @@ spec:
       containers:
       - name: api
         image: merteam/api:latest
+        env:
+        - name: DB_HOST
+          value: "db"
+        - name: DB_USERNAME
+          value: "root"
+        - name: DB_PASSWORD
+          value: "teste"
+        - name: DB_DATABASE
+          value: "mer"
+
+        - name: MQ_HOST
+          value: "rabbit"
+        - name: MQ_USER
+          value: "merUser"
+        - name: MQ_PASS
+          value: "passwordMER"
+
         ports:
         - containerPort: 8000
           name: api

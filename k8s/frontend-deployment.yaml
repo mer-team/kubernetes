@@ -17,11 +17,9 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: merteam/frontend:latest
-        env:
-        - name: URL_API
-          value: 192.168.49.2:30080
+        image: merteam/frontend:dev
         ports:
-        - containerPort: 3000
+        - containerPort: 3000 #dev
+        # - containerPort: 80 #prod
           name: frontend
           protocol: TCP

@@ -18,6 +18,7 @@ spec:
       containers:
       - name: vidextractor
         image: merteam/vidextractor:latest
+        imagePullPolicy: Always #no cache
         env:
         - name: HOST
           value: "rabbit"
@@ -33,9 +34,9 @@ spec:
           value: "10"
         volumeMounts:
           - mountPath: /vidExtractor/Audios
-            name: task-pv-storage
+            name: vidextractor-pv-storage
 
       volumes:
-        - name: task-pv-storage
+        - name: vidextractor-pv-storage
           persistentVolumeClaim:
-            claimName: task-pv-claim
+            claimName: pvc-audios

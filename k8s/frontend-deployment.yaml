@@ -17,9 +17,20 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: merteam/frontend:dev
+        image: merteam/frontend:dev # dev
+        # image: merteam/frontend:prod # prod
+        imagePullPolicy: Always # no cache
         ports:
         - containerPort: 3000 #dev
         # - containerPort: 80 #prod
           name: frontend
           protocol: TCP
+
+        volumeMounts:
+          - mountPath: /Soundwaves
+            name: wave2image-pv-storage
+
+      volumes:
+        - name: wave2image-pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-soundwaves
